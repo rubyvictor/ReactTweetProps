@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import isEmpty from 'lodash';
 import '../src/index.css';
+import { GRAVATAR_HASH } from "./constants";
 
 function MyComponent() {
   return (
@@ -76,7 +77,7 @@ function Tweet({tweet}) {
 // Fake Tweet data:
 var testTweet = {
   message: "Hey it's an awesome tweeting Saturday!",
-  gravatar: 'xyz',
+  gravatar: GRAVATAR_HASH,
   author: {
     handle: 'Saturday person',
     name: 'My name is Saturday Person.'
@@ -87,7 +88,7 @@ var testTweet = {
 };
 
 function Avatar({hash}) {
-  const srcUrl = `https://www.gravatar.com/avatar/${hash}`;
+  const srcUrl = `https://s.gravatar.com/avatar/${hash}`;
   return (
     <img
       src={srcUrl}
