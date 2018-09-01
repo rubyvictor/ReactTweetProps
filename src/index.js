@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import isEmpty from 'lodash';
 import '../src/index.css';
+import moment from "moment";
 import { GRAVATAR_HASH } from "./constants";
 
 function MyComponent() {
@@ -61,8 +62,8 @@ function Tweet({tweet}) {
     <div className="tweet">
       <Avatar hash={tweet.gravatar}/>
       <div className="content">
-        <NameWithHandle/><Time/>
-        <Message/>
+        <NameWithHandle author={tweet.author}/><Time time={tweet.timestamp}/>
+        <Message message={tweet.message}/>
         <div className="buttons">
             <ReplyButton/>
             <RetweetButton/>
@@ -84,7 +85,7 @@ var testTweet = {
   },
   likes: 200,
   retweets: 50,
-  timestampe: '2016-07-30 21:24:37'
+  timestamp: '2016-07-30 21:24:37'
 };
 
 function Avatar({hash}) {
@@ -98,26 +99,30 @@ function Avatar({hash}) {
   );
 }
 
-function Message() {
+function Message({message}) {
   return (
     <div className="message">
-      This is a tweet going out to you tweetie bird.
+      {message}
     </div>
   )
 }
 
-function NameWithHandle() {
+function NameWithHandle({author}) {
+  const { name, handle } = author
   return (
     <span className="name-with-handle">
-      <span className="name">Your Name</span>
-      <span className="handle">Your Handle</span>
+      <span className="name">{name}</span>
+      <span className="handle">{handle}</span>
     </span>
   )
 }
 
-const Time = () => (
-  <span className="time">3 hours ago</span>
-)
+const Time = ({time}) => {
+  const timeString = moment(time).fromNow();
+  return (
+    <span className="time">{timeString}</span>
+  )
+}
 
 const ReplyButton = () => (
   <i className="fa fa-reply reply-button" />
