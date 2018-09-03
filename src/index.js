@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom';
+import { ReactDOM, render } from 'react-dom';
 import isEmpty from 'lodash';
 import '../src/index.css';
 import moment from 'moment';
@@ -148,4 +148,4 @@ const MoreOptionsButton = () => (
   <i className="fa fa-ellipsis-h more-options-button" />
 );
 
-ReactDOM.render(<Tweet tweet={testTweet} />, document.getElementById('root'));
+render(<Tweet tweet={testTweet} />, document.getElementById('root'));
